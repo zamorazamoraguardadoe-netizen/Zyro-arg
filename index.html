@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#070b12">
+<title>ZYRO://ARCHIVO_06</title>
+<style>
+:root{--bg:#070b12;--panel:#0c1420;--line:#17334a;--blue:#43c7ff;--muted:#8296a8;--green:#79f2b0}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% 0%,#10283b 0%,#070b12 48%);color:#d8e7f2;font-family:Consolas,Monaco,monospace;display:grid;place-items:center;padding:22px}
+main{width:min(100%,560px);border:1px solid var(--line);background:rgba(8,15,24,.94);box-shadow:0 0 45px #071d2b;border-radius:14px;overflow:hidden}
+.top{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line);font-size:12px;letter-spacing:1px}
+.brand{color:var(--blue);font-weight:bold}.status{color:var(--green)}
+.content{padding:34px 26px 28px;text-align:center}
+.mark{font-size:11px;color:var(--muted);letter-spacing:3px}
+h1{font-size:clamp(30px,8vw,48px);color:var(--blue);letter-spacing:3px;margin:12px 0 6px;text-shadow:0 0 18px #168bc855}
+.sub{color:var(--muted);font-size:12px;margin-bottom:30px}
+.rule{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:22px 0}
+label{display:block;color:var(--blue);font-size:12px;letter-spacing:2px;margin-bottom:12px}
+input{width:100%;padding:15px 14px;background:#050a10;border:1px solid #24506b;border-radius:7px;color:#e8f7ff;font:inherit;text-align:center;outline:none}
+input:focus{border-color:var(--blue);box-shadow:0 0 0 3px #43c7ff18}
+button{width:100%;margin-top:12px;padding:14px;background:#0d2637;border:1px solid #28749a;border-radius:7px;color:var(--blue);font:inherit;font-weight:bold;letter-spacing:2px;cursor:pointer}
+button:hover{background:#12364c}
+#error{min-height:18px;color:#ff7777;font-size:12px;margin-top:12px}
+#secret{display:none}
+.big{font-size:clamp(21px,6vw,30px);font-weight:bold;color:var(--green);line-height:1.4;text-shadow:0 0 18px #79f2b033}
+.note{font-size:12px;color:var(--muted);line-height:1.7}
+footer{border-top:1px solid var(--line);padding:13px;text-align:center;color:#52697b;font-size:10px;letter-spacing:1px}
+.cursor{display:inline-block;width:8px;height:15px;background:var(--blue);vertical-align:middle;animation:blink 1s steps(2,start) infinite}
+@keyframes blink{to{visibility:hidden}}
+</style>
+</head>
+<body>
+<main>
+  <div class="top"><span class="brand">ZYRO://SYSTEM</span><span class="status">● SYSTEM ONLINE</span></div>
+  <section class="content" id="login">
+    <div class="mark">REGISTRO ENCONTRADO // 06</div>
+    <h1>ARCHIVO_06</h1>
+    <div class="sub">USUARIO NO IDENTIFICADO · ACCESO RESTRINGIDO</div>
+    <div class="rule"></div>
+    <label for="pass">INTRODUZCA LA CONTRASEÑA</label>
+    <input id="pass" type="password" placeholder="••••••••" autocomplete="off">
+    <button id="enter">INTENTAR ACCESO</button>
+    <div id="error" aria-live="polite"></div>
+    <div class="note">La información de este archivo está protegida.</div>
+  </section>
+  <section class="content" id="secret">
+    <div class="mark">IDENTIDAD VERIFICADA // ACCESO CONCEDIDO</div>
+    <h1>ARCHIVO_ABIERTO</h1>
+    <div class="rule"></div>
+    <div class="big">¿PENSASTE QUE ERA UN ARG?</div>
+    <p class="note">Entonces, ¿por qué llegaste hasta aquí?<br><br>FIN DE LA TRANSMISIÓN<span class="cursor"></span></p>
+  </section>
+  <footer>CONEXIÓN CIFRADA · ZYRO PROJECT</footer>
+</main>
+<script>
+/* CONTRASEÑA INICIAL: LUNIX
+   Puedes cambiarla editando el texto entre comillas de abajo. */
+const PASSWORD = "LUNIX";
+const input = document.getElementById("pass");
+const error = document.getElementById("error");
+function unlock(){
+  if(input.value.trim().toUpperCase() === PASSWORD){
+    document.getElementById("login").style.display="none";
+    document.getElementById("secret").style.display="block";
+    document.title="ZYRO://ARCHIVO_ABIERTO";
+  } else {
+    error.textContent="ERROR: CONTRASEÑA INCORRECTA";
+    input.value="";
+    input.focus();
+  }
+}
+document.getElementById("enter").addEventListener("click",unlock);
+input.addEventListener("keydown",e=>{if(e.key==="Enter")unlock()});
+</script>
+</body>
+</html>
